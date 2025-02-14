@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
+using System.Security.Cryptography.X509Certificates;
 
 namespace MonoGameSprintProject_NathanielWhite_20250212
 {
@@ -16,6 +18,8 @@ namespace MonoGameSprintProject_NathanielWhite_20250212
         /// <remarks>
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
+        Player playerRef = new Player();
 
         public Game1()
         {
@@ -44,17 +48,49 @@ namespace MonoGameSprintProject_NathanielWhite_20250212
                 Exit();
 
             // TODO: Add your update logic here
+            playerRef.Update();
 
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Green);
 
             // TODO: Add your drawing code here
+            playerRef.Draw(gameTime);
 
             base.Draw(gameTime);
         }
+    }
+
+    public class Player
+    {
+       public void Update()
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.Up))
+            {
+                
+            }
+        }
+        public void Draw(GameTime gameTime)
+        {
+
+        }
+    }
+
+    public class Tiles
+    {
+
+    }
+
+    public class CollisionTiles : Tiles
+    {
+
+    }
+
+    public class ExitTiles : Tiles
+    {
+
     }
 }
