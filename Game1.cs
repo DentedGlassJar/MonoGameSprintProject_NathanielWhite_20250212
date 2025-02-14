@@ -19,7 +19,11 @@ namespace MonoGameSprintProject_NathanielWhite_20250212
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        Player playerRef = new Player();
+        // Reference to the texture the player will have
+        private Texture2D playerTexture;
+
+        // Reference to the position the player will have
+        private Vector2 playerPosition;
 
         public Game1()
         {
@@ -39,7 +43,11 @@ namespace MonoGameSprintProject_NathanielWhite_20250212
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            // Loads in the Player_Sprite.png file from Content
+            playerTexture = Content.Load<Texture2D>("Player_Sprite");
+
+            playerPosition = Vector2.Zero;
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -48,7 +56,25 @@ namespace MonoGameSprintProject_NathanielWhite_20250212
                 Exit();
 
             // TODO: Add your update logic here
-            playerRef.Update();
+            if (Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.Up))
+            {
+                playerPosition.Y -= 1f;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.S) || Keyboard.GetState().IsKeyDown(Keys.Down))
+            {
+                playerPosition.Y += 1f;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.A) || Keyboard.GetState().IsKeyDown(Keys.Left))
+            {
+                playerPosition.X -= 1f;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.D) || Keyboard.GetState().IsKeyDown(Keys.Right))
+            {
+                playerPosition.X += 1f;
+            }
 
             base.Update(gameTime);
         }
@@ -58,7 +84,10 @@ namespace MonoGameSprintProject_NathanielWhite_20250212
             GraphicsDevice.Clear(Color.Green);
 
             // TODO: Add your drawing code here
-            playerRef.Draw(gameTime);
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(playerTexture, playerPosition, Color.White);
+            _spriteBatch.End();
+
 
             base.Draw(gameTime);
         }
@@ -66,17 +95,7 @@ namespace MonoGameSprintProject_NathanielWhite_20250212
 
     public class Player
     {
-       public void Update()
-        {
-            if (Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.Up))
-            {
-                
-            }
-        }
-        public void Draw(GameTime gameTime)
-        {
-
-        }
+        
     }
 
     public class Tiles
