@@ -34,8 +34,6 @@ namespace MonoGameSprintProject_NathanielWhite_20250212
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
@@ -47,7 +45,6 @@ namespace MonoGameSprintProject_NathanielWhite_20250212
             playerTexture = Content.Load<Texture2D>("Player_Sprite");
 
             playerPosition = Vector2.Zero;
-
         }
 
         protected override void Update(GameTime gameTime)
@@ -55,7 +52,7 @@ namespace MonoGameSprintProject_NathanielWhite_20250212
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            // Moves the player when they press W (Up), A (Left), S (Down), and D (Right)
             if (Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.Up))
             {
                 playerPosition.Y -= 1f;
@@ -83,7 +80,7 @@ namespace MonoGameSprintProject_NathanielWhite_20250212
         {
             GraphicsDevice.Clear(Color.Green);
 
-            // TODO: Add your drawing code here
+            // Draws the players texture and it's position
             _spriteBatch.Begin();
             _spriteBatch.Draw(playerTexture, playerPosition, Color.White);
             _spriteBatch.End();
